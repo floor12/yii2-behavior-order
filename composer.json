@@ -1,0 +1,27 @@
+{
+    "name": "floor12/yii2-behavior-order",
+    "description": "Yii2 package to add order to any of yours models.",
+    "type": "yii2-extension",
+    "minimum-stability": "stable",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "floor12",
+            "email": "primelifecoder@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "floor12\\yii2-behavior-order\\": "src"
+        }
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}

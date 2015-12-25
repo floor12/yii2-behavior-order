@@ -48,7 +48,6 @@ class OrderBehavior extends Behavior {
                 $condition.= " AND `{$field}`='{$this->owner->$field}'";
             }
         $command = yii::$app->db->createCommand()->update($this->owner->tableName(), ['order' => $oldOrder], $condition)->execute();
-
         $this->owner->save();
         $this->reorder();
     }

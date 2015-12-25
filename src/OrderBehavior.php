@@ -64,7 +64,7 @@ class OrderBehavior extends Behavior {
         if ($rows)
             foreach ($rows as $key => $row) {
                 $row->order = ++$key;
-                $row->save();
+                $row->save(false);
             }
     }
 

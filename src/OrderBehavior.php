@@ -3,6 +3,7 @@
 namespace floor12\orderBehavior;
 
 use yii\base\Behavior;
+use yii\db\ActiveRecord;
 use yii;
 
 /**
@@ -13,6 +14,23 @@ use yii;
 class OrderBehavior extends Behavior {
 
     public $params = [];
+
+    public function events() {
+        return [
+            ActiveRecord::EVENT_BEFORE_INSERT => 'beforeInsert',
+        ];
+    }
+
+    public function beforeInsert() {
+        $condition = "1=1";
+        if ($this->params)
+            foreach ($this->params as $field) {
+                $condition.= " AND `{$field}`='{$this->owner->$field}'";
+            }
+
+        $num = \Yii::$app->db->createCommand("SELECT count('id') as num FROM {$this->owner->tableName()} WHERE {$condition}")->queryOne();
+        $this->owner->order = ++$num['num'];
+    }
 
     public function order($mode = 0) {
         if ($this->owner->order < 2)
